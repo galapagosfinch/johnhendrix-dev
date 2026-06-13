@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@400;500;600&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-parchment text-ink font-body text-body;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  a {
+    @apply text-forest hover:text-forest-light transition-colors duration-200;
+  }
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-block bg-forest text-parchment font-ui font-semibold
+           px-6 py-3 rounded-sm
+           hover:bg-forest-light transition-colors duration-200
+           min-h-[48px] min-w-[48px];
+  }
+  .btn-secondary {
+    @apply inline-block bg-transparent text-forest font-ui font-semibold
+           px-6 py-3 rounded-sm border-2 border-forest
+           hover:bg-forest hover:text-parchment transition-colors duration-200
+           min-h-[48px] min-w-[48px];
+  }
+  .btn-donate {
+    @apply inline-block bg-copper text-parchment font-ui font-semibold
+           px-8 py-4 rounded-sm text-lg
+           hover:bg-copper-light transition-colors duration-200
+           min-h-[48px];
+  }
+
+  /* Layout */
+  .section-container {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .section-pad {
+    @apply py-16 sm:py-20;
+  }
+
+  /* Texture overlay for dark green sections */
+  .bg-forest-textured {
+    @apply bg-forest;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Eyebrow label — used above section headings */
+  .eyebrow {
+    @apply font-ui text-copper text-xs tracking-[0.25em] uppercase font-semibold mb-3 block;
+  }
+  .eyebrow-light {
+    @apply font-ui text-creek-light text-xs tracking-[0.25em] uppercase font-semibold mb-3 block;
+  }
+
+  /* Copper left-border accent on hero sections */
+  .hero-border {
+    @apply relative;
+  }
+  .hero-border::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-[3px] bg-copper;
+  }
+
+  /* Copper gradient divider */
+  .copper-divider {
+    height: 3px;
+    background: linear-gradient(90deg, #A0522D 0%, #C47848 40%, transparent 100%);
+  }
+
+  /* Pull quote */
+  .pullquote {
+    @apply border-l-[3px] border-copper pl-5 my-8;
+  }
+  .pullquote p {
+    @apply font-display italic text-xl text-forest leading-relaxed;
+  }
+  .pullquote cite {
+    @apply font-ui text-sm text-stone not-italic mt-2 block;
+  }
+}

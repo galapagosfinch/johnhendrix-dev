@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// PLACEHOLDER — replace with real Stripe Payment Link URL
+const stripeUrl = "#";
+const paypalUrl = "https://www.paypal.com/ncp/payment/N5GV83928V65L";
+
+const tiers = [
+  { amount: "$25",  label: "Trail Supporter",   description: "Helps maintain the trail and signage." },
+  { amount: "$50",  label: "Creek Keeper",       description: "Supports ongoing trail improvements." },
+  { amount: "$100", label: "Chapel Builder",     description: "Directly funds the Memorial Chapel." },
+  { amount: "Any",  label: "Your Own Amount",    description: "Every gift, large or small, makes a difference." },
+];
+---
+
+<Layout
+  title="Donate to the Vision"
+  description="Support the John Hendrix Memorial Prayer Walk and help build the Memorial Chapel to preserve the stories of the pre-Oak Ridge community."
+>
+
+  <!-- Hero -->
+  <section class="bg-forest-textured text-parchment py-20 hero-border">
+    <div class="section-container">
+      <span class="eyebrow-light">501(c)(3) Nonprofit</span>
+      <h1 class="font-display text-section text-parchment mb-4">Donate to the Vision</h1>
+      <p class="text-parchment-dark text-lg max-w-xl">
+        The story of John Hendrix and the families who gave up their land deserves to be told
+        for generations to come. Will you help?
+      </p>
+    </div>
+  </section>
+
+  <!-- Vision section -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="eyebrow">The Next Step</span>
+          <h2 class="font-display text-section text-forest mb-6">The Memorial Chapel</h2>
+          <p class="text-ink-soft text-lg leading-relaxed mb-4">
+            The final stage of the John Hendrix Memorial is a chapel to be added to the prayer walk.
+            It will offer visitors the opportunity to enjoy antique items, photos, and stories of the
+            families who gave up their homes and land to help win one of the greatest wars that will ever be.
+          </p>
+          <p class="text-ink-soft leading-relaxed mb-6">
+            In order to adequately honor the Hendrix family, the Garrisons, the Kerrs, the Brummitts,
+            Johnsons, and other families whose stories are shared in the book <em>Robertsville</em>,
+            the chapel will preserve their antiques, photos, and stories for all who visit the trail.
+          </p>
+          <p class="font-display text-xl text-forest italic">
+            "Help win one of the greatest wars that will ever be."
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://www.johnhendrixmemorial.com/uploads/3/4/9/4/34942962/published/chapel-idea.jpg"
+            alt="Rendering of the planned John Hendrix Memorial Chapel"
+            loading="lazy"
+            width="600"
+            height="400"
+            class="rounded-sm shadow-md w-full"
+          />
+          <p class="text-sm text-stone font-ui mt-2 text-center">Proposed Memorial Chapel rendering</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Giving tiers -->
+  <section class="section-pad bg-parchment-dark">
+    <div class="section-container">
+      <span class="eyebrow">Ways to Give</span>
+      <h2 class="font-display text-section text-forest mb-8">Choose Your Gift</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        {tiers.map((tier) => (
+          <div class="bg-parchment border border-stone-light rounded-sm p-6 text-center flex flex-col">
+            <span class="font-display text-4xl text-forest mb-2">{tier.amount}</span>
+            <span class="font-ui font-semibold text-ink text-sm mb-2">{tier.label}</span>
+            <p class="text-stone text-sm leading-snug flex-1">{tier.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Donate buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 items-center">
+        <a
+          href={stripeUrl}
+          class="btn-donate text-center w-full sm:w-auto"
+          aria-label="Donate via Stripe — supports Apple Pay and Google Pay"
+        >
+          Donate with Card / Apple Pay / Google Pay
+        </a>
+        <a
+          href={paypalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary text-center w-full sm:w-auto"
+          aria-label="Donate via PayPal"
+        >
+          Donate with PayPal
+        </a>
+      </div>
+
+      <p class="text-sm text-stone font-ui mt-6 text-center">
+        🔒 All donations are processed securely. The John Hendrix Memorial Prayer Walk is a 501(c)(3)
+        nonprofit organization. <strong>All donations are tax deductible.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Wildlife photo + closing appeal -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container text-center max-w-2xl mx-auto">
+      <img
+        src="https://www.johnhendrixmemorial.com/uploads/3/4/9/4/34942962/editor/photo-of-deer.jpeg"
+        alt="Wildlife on the John Hendrix Memorial Prayer Walk trail"
+        loading="lazy"
+        width="600"
+        height="400"
+        class="rounded-sm shadow-md w-full mb-8"
+      />
+      <p class="text-ink-soft text-lg leading-relaxed mb-2">
+        Volunteer assistance and financial donations are always appreciated.
+      </p>
+      <p class="text-stone font-ui text-sm">
+        Questions? Call <a href="tel:8657128027" class="underline">(865) 712-8027</a>
+      </p>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const books = [
+  {
+    title: "The Story of John Hendrix, Prophet of Oak Ridge",
+    cover: "https://www.johnhendrixmemorial.com/uploads/3/4/9/4/34942962/published/jh-book-cover.jpg",
+    description: "At the turn of the 20th century a simple farmer in rural East Tennessee spent 40 nights in the woods only to emerge with the announcement that he had received visions about the future. Those who knew him couldn't even remotely understand the magnitude of what he was trying to say using the primitive language common in that day. Yet the fulfillment of those visions came to be called \"the greatest accomplishment of the 20th century.\"",
+    price: "$9.95",
+    amazonUrl: "https://www.amazon.com/Story-John-Hendrix-Prophet-Ridge/dp/098625570X",
+    schema: {
+      name: "The Story of John Hendrix, Prophet of Oak Ridge",
+      author: "Myra Mansfield",
+    }
+  },
+  {
+    title: "Robertsville",
+    cover: "https://www.johnhendrixmemorial.com/uploads/3/4/9/4/34942962/robertsville-book-cover_orig.jpg",
+    description: "An historical novel based on the true story of a small east Tennessee farm community whose sacrifices led to the \"greatest accomplishment of the 20th century.\" While the primitive lifestyle of its people insulated them from the world progress around them, one of their farmers became known as \"The Prophet\" after he announces he has had visions about the future.",
+    price: "$15.95",
+    amazonUrl: "https://www.amazon.com/Robertsville-Myra-Mansfield/dp/0986255718",
+    schema: {
+      name: "Robertsville",
+      author: "Myra Mansfield",
+    }
+  }
+];
+
+const retailers = [
+  { name: "American Museum of Science and Energy Gift Shop", city: "Oak Ridge, TN", url: "https://amse.org/visit/" },
+  { name: "K-25 History Museum", city: "Oak Ridge, TN", url: "https://k25historycenter.org/" },
+  { name: "The Museum of Appalachia", city: "Norris, TN", url: "https://www.museumofappalachia.org/" },
+  { name: "Hoskins Drug Store and Diner", city: "Clinton, TN", url: "https://www.facebook.com/hoskinsdrugstore/" },
+];
+---
+
+<Layout
+  title="Books"
+  description="Books about John Hendrix, the Prophet of Oak Ridge, and the pre-Oak Ridge community of Robertsville, Tennessee."
+>
+
+  <!-- Hero -->
+  <section class="bg-forest-textured text-parchment py-20 hero-border">
+    <div class="section-container">
+      <span class="eyebrow-light">Resources</span>
+      <h1 class="font-display text-section text-parchment mb-4">Books</h1>
+      <p class="text-parchment-dark text-lg max-w-xl">
+        Go deeper into the story of John Hendrix and the community whose land became Oak Ridge.
+      </p>
+    </div>
+  </section>
+
+  <!-- Book cards -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container">
+      <div class="grid md:grid-cols-2 gap-10">
+        {books.map((book) => (
+          <article
+            class="bg-parchment-dark border border-stone-light rounded-sm overflow-hidden flex flex-col"
+            itemscope
+            itemtype="https://schema.org/Book"
+          >
+            <div class="bg-ink flex items-center justify-center p-8">
+              <img
+                src={book.cover}
+                alt={`Cover of ${book.title}`}
+                loading="lazy"
+                width="200"
+                height="300"
+                class="shadow-lg"
+                itemprop="image"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h2 class="font-display text-xl text-forest mb-1" itemprop="name">{book.title}</h2>
+              <p class="font-ui text-sm text-copper mb-4" itemprop="author">{book.schema.author}</p>
+              <p class="text-ink-soft leading-relaxed mb-6 flex-1" itemprop="description">{book.description}</p>
+              <div class="flex items-center justify-between mt-auto pt-4 border-t border-stone-light">
+                <span class="font-display text-2xl text-forest" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                  <span itemprop="price">{book.price}</span>
+                </span>
+                <a
+                  href={book.amazonUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary text-sm"
+                  itemprop="url"
+                >
+                  Buy on Amazon →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Local retailers -->
+  <section class="section-pad bg-parchment-dark">
+    <div class="section-container">
+      <span class="eyebrow">Shop Local</span>
+      <h2 class="font-display text-section text-forest mb-8">Also Available At</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {retailers.map((r) => (
+          <a
+            href={r.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-start gap-4 p-5 bg-parchment border border-stone-light rounded-sm hover:border-forest transition-colors group"
+            itemscope
+            itemtype="https://schema.org/LocalBusiness"
+          >
+            <span class="text-2xl mt-0.5">🏛️</span>
+            <span>
+              <span class="font-ui font-semibold text-forest group-hover:text-forest-light block" itemprop="name">{r.name}</span>
+              <span class="text-sm text-stone font-ui" itemprop="address">{r.city}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

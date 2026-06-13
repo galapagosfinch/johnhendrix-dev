@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "The Prophet's Land",
+    "description": "PLACEHOLDER — Add description of Marker 1 here. This marker covers John Hendrix's original farmland along Hendrix Creek.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 1 — The Prophet's Land"
+  },
+  {
+    "id": 2,
+    "title": "Forty Nights in the Woods",
+    "description": "PLACEHOLDER — Add description of Marker 2 here. This marker tells the story of John's forty nights sleeping with his head on the ground.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 2 — Forty Nights in the Woods"
+  },
+  {
+    "id": 3,
+    "title": "The Visions",
+    "description": "PLACEHOLDER — Add description of Marker 3 here. This marker recounts the prophecies John shared with his neighbors.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 3 — The Visions"
+  },
+  {
+    "id": 4,
+    "title": "Bear Creek Valley",
+    "description": "PLACEHOLDER — Add description of Marker 4 here. John predicted great factories would be built in Bear Creek Valley.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 4 — Bear Creek Valley"
+  },
+  {
+    "id": 5,
+    "title": "The Community of Black Oak Ridge",
+    "description": "PLACEHOLDER — Add description of Marker 5 here. John foretold a great city would rise on Black Oak Ridge.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 5 — The Community of Black Oak Ridge"
+  },
+  {
+    "id": 6,
+    "title": "The Manhattan Project",
+    "description": "PLACEHOLDER — Add description of Marker 6 here. In 1942 the War Department seized this land to build the secret city of Oak Ridge.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 6 — The Manhattan Project"
+  },
+  {
+    "id": 7,
+    "title": "Hendrix Creek",
+    "description": "PLACEHOLDER — Add description of Marker 7 here. The creek that bears John's name still flows through this property today.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 7 — Hendrix Creek"
+  },
+  {
+    "id": 8,
+    "title": "The Legacy",
+    "description": "PLACEHOLDER — Add description of Marker 8 here. John Hendrix died in 1915 of tuberculosis, thirty years before his prophecies were fulfilled.",
+    "imageUrl": "",
+    "imageAlt": "Trail marker 8 — The Legacy"
+  }
+]

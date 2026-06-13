@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Home"
+  description="Meet John Hendrix — the Prophet of Oak Ridge, Tennessee, whose extraordinary visions foretold the Manhattan Project of World War II."
+>
+
+  <!-- Hero -->
+  <section class="bg-forest-textured text-parchment hero-border">
+    <div class="section-container py-24 sm:py-32 pl-8 sm:pl-12">
+      <span class="eyebrow-light">Oak Ridge, Tennessee · Est. 1942</span>
+      <h1 class="font-display text-hero text-parchment mb-3 leading-tight">
+        The <em class="italic text-copper-light">Prophet</em><br />of Oak Ridge
+      </h1>
+      <p class="font-display italic text-stone-light text-lg mb-8">
+        A farmer. Forty nights. A prophecy fulfilled.
+      </p>
+      <p class="text-parchment-dark text-lg max-w-xl mb-10 leading-relaxed font-body">
+        A simple East Tennessee farmer spent forty nights sleeping in the woods — and emerged
+        with visions that foretold the Manhattan Project, decades before the atomic age began.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/prayerwalk" class="btn-donate">Walk the Trail</a>
+        <a href="/donate" class="inline-block bg-transparent text-parchment font-ui font-semibold px-6 py-3 rounded-sm border-2 border-forest-light hover:bg-forest-light transition-colors duration-200 min-h-[48px]">Support the Vision</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Copper divider -->
+  <div class="copper-divider"></div>
+
+  <!-- John's Story -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container">
+      <span class="eyebrow">His Story</span>
+      <h2 class="font-display text-section text-forest mb-8">Meet John Hendrix</h2>
+      <div class="max-w-none text-ink-soft space-y-5 text-lg leading-relaxed">
+        <p>
+          John Hendrix and his wife Julia had five children when diphtheria hit their community
+          around the turn of the 20th century. Baby Ethel got sick and died. The family was turned
+          upside down with turmoil. Julia couldn't cope with her grief, so she took the other children
+          and boarded a wagon headed for Arkansas — after which John never saw any of them again.
+        </p>
+        <p>
+          As people often do during a time of trial, John began asking God why this was happening to him.
+          He took long walks in the woods of his property praying for understanding. One day while in the
+          woods he heard a thunderous voice promise that if he would sleep with his head on the ground for
+          forty nights, he would be shown the future of his land.
+        </p>
+        <p>
+          So he did it. He went to the woods and chose a spot near a fence row. Neighbors brought him soup
+          and covered him with blankets. One cold morning someone found him with his hair frozen to the ground.
+        </p>
+        <p>
+          Forty days later John reappeared from the woods and said he had been shown visions of the future.
+          He said a city would be built on Black Oak Ridge for thousands of people. He said big factories
+          would be built down in Bear Creek Valley where they would be "building things." He said what was
+          going to be built would help win one of the greatest wars that would ever be.
+        </p>
+
+        <div class="pullquote">
+          <p>"I guess ol' John wasn't crazy after all."</p>
+          <cite>— John's neighbors, 1942</cite>
+        </div>
+
+        <p>
+          In 1915 John Hendrix died of tuberculosis. In 1942, the War Department seized this primitive
+          community — still without electricity — for a war emergency. People who had heard John's
+          predictions finally understood what he had seen in those forty nights in the woods.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube Documentary -->
+  <section class="section-pad bg-parchment-dark">
+    <div class="section-container">
+      <span class="eyebrow">Documentary</span>
+      <h2 class="font-display text-section text-forest mb-4">See John's Story on Film</h2>
+      <p class="text-ink-soft mb-8 max-w-xl">
+        John Hendrix as portrayed by Jack Mansfield. Video courtesy of Secret City Films.
+      </p>
+      <div
+        class="relative w-full bg-ink rounded-sm overflow-hidden"
+        style="padding-bottom: 56.25%;"
+        data-youtube-id="BdaB8fVaIps"
+        id="youtube-embed"
+      >
+        <div id="youtube-placeholder" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
+          <img
+            src="https://img.youtube.com/vi/BdaB8fVaIps/maxresdefault.jpg"
+            alt="Documentary film about John Hendrix, the Prophet of Oak Ridge"
+            class="absolute inset-0 w-full h-full object-cover opacity-80"
+            loading="lazy"
+          />
+          <div class="relative z-10 w-16 h-16 bg-copper rounded-full flex items-center justify-center group-hover:bg-copper-light transition-colors shadow-lg">
+            <i class="ti ti-player-play text-parchment text-2xl ml-0.5" aria-hidden="true"></i>
+          </div>
+        </div>
+        <iframe
+          id="youtube-iframe"
+          class="absolute inset-0 w-full h-full hidden"
+          src=""
+          title="John Hendrix documentary film"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="bg-forest-textured text-parchment py-16">
+    <div class="section-container text-center">
+      <h2 class="font-display text-2xl text-parchment mb-3">Walk Where John Walked</h2>
+      <p class="text-parchment-dark mb-8 max-w-md mx-auto leading-relaxed">
+        The ½-mile Memorial Prayer Walk along Hendrix Creek is free and open to all visitors.
+      </p>
+      <a href="/find-us" class="btn-donate">
+        <i class="ti ti-map-pin mr-2" aria-hidden="true"></i>Get Directions
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const placeholder = document.getElementById('youtube-placeholder');
+  const iframe = document.getElementById('youtube-iframe') as HTMLIFrameElement | null;
+  const embedDiv = document.getElementById('youtube-embed');
+
+  placeholder?.addEventListener('click', () => {
+    if (iframe && embedDiv) {
+      const videoId = embedDiv.dataset.youtubeId;
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      iframe.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+    }
+  });
+</script>

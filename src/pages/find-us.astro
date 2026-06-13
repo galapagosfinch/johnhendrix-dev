@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const location = {
+  address: "Hendrix Drive, Oak Ridge, TN 37830",
+  directions: "Located on Hendrix Drive across from Hampshire Court.",
+  geoLink: "geo:36.01241,-84.233869",
+  googleMapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3230.0!2d-84.233869!3d36.01241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDAwJzQ0LjciTiA4NMKwMTQnMDMuMCJX!5e0!3m2!1sen!2sus!4v1000000000000",
+  phone: "8657128027",
+};
+---
+
+<Layout
+  title="Find Us"
+  description="Directions to the John Hendrix Memorial Prayer Walk on Hendrix Drive in Oak Ridge, Tennessee. Trail hours, rules, and parking information."
+>
+
+  <!-- Hero -->
+  <section class="bg-forest-textured text-parchment py-20 hero-border">
+    <div class="section-container">
+      <span class="eyebrow-light">Getting Here</span>
+      <h1 class="font-display text-section text-parchment mb-4">Find the Trail</h1>
+      <p class="text-parchment-dark text-lg max-w-xl">
+        The Prayer Walk is free and open to the public. Here's everything you need
+        to find us and have a great visit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Address + quick actions -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container">
+      <div class="grid md:grid-cols-2 gap-12">
+
+        <!-- Address block -->
+        <div>
+          <span class="eyebrow">Address</span>
+          <h2 class="font-display text-2xl text-forest mb-4">Trailhead Location</h2>
+          <address class="not-italic text-ink-soft text-lg leading-relaxed mb-6">
+            Hendrix Drive<br />
+            Oak Ridge, TN 37830<br />
+            <span class="text-base">(across from Hampshire Court)</span>
+          </address>
+          <div class="flex flex-wrap gap-3">
+            <a href={location.geoLink} class="btn-primary text-sm">
+              Open in Maps App
+            </a>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary text-sm"
+            >
+              Google Maps Directions
+            </a>
+          </div>
+          <p class="text-sm text-stone font-ui mt-4">
+            Questions? Call us at <a href={`tel:${location.phone}`} class="underline">(865) 712-8027</a>
+          </p>
+        </div>
+
+        <!-- Trail rules -->
+        <div>
+          <span class="eyebrow">Before You Go</span>
+          <h2 class="font-display text-2xl text-forest mb-4">Trail Information</h2>
+          <ul class="space-y-3 text-ink-soft">
+            <li class="flex gap-3">
+              <span class="text-forest mt-0.5">✓</span>
+              <span>The trail is free and open to all visitors.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-forest mt-0.5">✓</span>
+              <span>The path is approximately ½ mile and is an easy, relatively flat walk.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-forest mt-0.5">✓</span>
+              <span>Several benches are available along the trail for resting.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-copper mt-0.5">⚠</span>
+              <span>Check weather conditions before visiting — the trail may be muddy or slippery after heavy rain.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-copper mt-0.5">⚠</span>
+              <span>Wear appropriate footwear for a natural trail surface.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-copper mt-0.5">⚠</span>
+              <span>Please leave the trail as you found it. Pack out any trash.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="bg-parchment-dark">
+    <div class="section-container py-10">
+      <span class="eyebrow">Map</span>
+      <h2 class="font-display text-2xl text-forest mb-6">Trail Location</h2>
+
+      <!-- Static preview loads first; clicking mounts the iframe -->
+      <div class="relative w-full rounded-sm overflow-hidden border border-stone-light bg-ink" style="height: 400px;">
+        <div
+          id="map-placeholder"
+          class="absolute inset-0 flex flex-col items-center justify-center gap-4 cursor-pointer bg-forest-light hover:bg-forest transition-colors"
+        >
+          <span class="text-5xl">🗺️</span>
+          <p class="text-parchment font-ui font-semibold">Tap to load interactive map</p>
+          <p class="text-parchment-dark text-sm font-ui">Hendrix Drive, Oak Ridge, TN</p>
+        </div>
+        <iframe
+          id="map-iframe"
+          class="absolute inset-0 w-full h-full hidden"
+          src=""
+          data-src={location.googleMapsUrl}
+          title="Map showing the location of the John Hendrix Memorial Prayer Walk"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <p class="text-sm text-stone font-ui mt-3">
+        Coordinates: 36.01241, -84.233869
+      </p>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const placeholder = document.getElementById('map-placeholder');
+  const iframe = document.getElementById('map-iframe') as HTMLIFrameElement | null;
+
+  placeholder?.addEventListener('click', () => {
+    if (iframe) {
+      iframe.src = iframe.dataset.src || '';
+      iframe.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+    }
+  });
+</script>

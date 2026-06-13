@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import trailMarkers from '../data/trail-markers.json';
+---
+
+<Layout
+  title="Prayer Walk"
+  description="Walk the John Hendrix Memorial Prayer Walk — a ½-mile nature trail along Hendrix Creek in Oak Ridge, Tennessee with eight historical trail markers."
+>
+
+  <!-- Hero -->
+  <section class="bg-forest-textured text-parchment py-20 hero-border">
+    <div class="section-container">
+      <span class="eyebrow-light">Oak Ridge, Tennessee</span>
+      <h1 class="font-display text-section text-parchment mb-4">John Hendrix Memorial<br />Prayer Walk</h1>
+      <p class="text-parchment-dark text-lg max-w-xl">
+        A historic ½-mile nature trail commemorating the story of John Hendrix
+        and the community whose sacrifice helped win World War II.
+      </p>
+    </div>
+  </section>
+
+  <!-- Trail intro -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container">
+      <p class="text-ink-soft text-lg leading-relaxed mb-6">
+        As you meander along Hendrix Creek you will discover eight trail markers which tell the story
+        of a farmer named John who came to be called "The Prophet of Oak Ridge." You will hear the
+        story of a community who gave up their land for the secret city now called Oak Ridge, Tennessee —
+        where the uranium was produced for the first atomic bombs so the massive killings of WWII
+        could be brought to an end.
+      </p>
+      <p class="text-ink-soft text-lg leading-relaxed">
+        Along the trail you may watch for wildlife, hear the water running down the creek, look for
+        the Hendrix rose bushes and wildflowers, fruit trees, chestnuts, and periwinkle ground cover
+        in bloom. Several benches are available to rest along the trail. Train tracks still lay right
+        beside John Hendrix's old farm site.
+      </p>
+    </div>
+  </section>
+
+  <!-- Trail markers accordion -->
+  <section class="section-pad bg-parchment-dark">
+    <div class="section-container">
+      <span class="eyebrow">Along the Trail</span>
+      <h2 class="font-display text-section text-forest mb-10">Eight Trail Markers</h2>
+
+      <div class="space-y-3" id="trail-accordion">
+        {trailMarkers.map((marker) => (
+          <div class="border border-stone-light rounded-sm overflow-hidden bg-parchment">
+            <button
+              class="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-parchment-dark transition-colors min-h-[56px]"
+              aria-expanded="false"
+              data-accordion-trigger
+            >
+              <span class="flex items-center gap-4">
+                <span class="font-ui text-xs text-copper font-semibold tracking-widest uppercase w-6">
+                  {String(marker.id).padStart(2, '0')}
+                </span>
+                <span class="font-display text-lg text-forest">{marker.title}</span>
+              </span>
+              <svg class="h-5 w-5 text-stone shrink-0 transition-transform duration-200" data-chevron xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="hidden px-6 pb-5 pt-1 border-t border-stone-light" data-accordion-content>
+              <p class="text-ink-soft leading-relaxed">{marker.description}</p>
+              {marker.imageUrl && (
+                <img
+                  src={marker.imageUrl}
+                  alt={marker.imageAlt}
+                  loading="lazy"
+                  class="mt-4 rounded-sm w-full max-w-md"
+                />
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gravesite section -->
+  <section class="section-pad bg-parchment">
+    <div class="section-container">
+      <span class="eyebrow">After the Walk</span>
+      <h2 class="font-display text-section text-forest mb-6">John's Gravesite</h2>
+      <p class="text-ink-soft text-lg leading-relaxed max-w-2xl mb-8">
+        After finishing the trail, venture up the street to John's gravesite, located to the left
+        of 127 Hendrix Drive. Until recently a boxwood bush planted there by John's six-year-old son
+        Curtis when John died in 1915 grew to billow 50+ feet in the air. A local school group
+        purchased the gravestone in 1970.
+      </p>
+      <a href="/find-us" class="btn-primary">Get Directions to the Trail</a>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('[data-accordion-trigger]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const content = trigger.nextElementSibling as HTMLElement;
+      const chevron = trigger.querySelector('[data-chevron]') as HTMLElement;
+      const isOpen = !content.classList.contains('hidden');
+
+      content.classList.toggle('hidden', isOpen);
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>

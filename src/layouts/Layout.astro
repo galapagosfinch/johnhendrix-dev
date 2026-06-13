@@ -1,0 +1,160 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'The John Hendrix Memorial Prayer Walk in Oak Ridge, Tennessee — commemorating the Prophet of Oak Ridge and his extraordinary prophecies of the Manhattan Project.',
+  ogImage = '/images/og-default.jpg',
+} = Astro.props;
+
+const siteTitle = title === 'Home'
+  ? 'John Hendrix Memorial Prayer Walk'
+  : `${title} | John Hendrix Memorial Prayer Walk`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta property="og:title" content={siteTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  <title>{siteTitle}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header / Nav -->
+  <header class="bg-forest-textured text-parchment sticky top-0 z-50 shadow-md">
+    <div class="section-container">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Site name -->
+        <a href="/" class="font-display font-bold text-parchment hover:text-parchment-dark text-lg leading-tight">
+          John Hendrix
+          <span class="eyebrow-light mb-0 mt-0.5">Memorial Prayer Walk</span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-6 font-ui text-sm font-medium" aria-label="Main navigation">
+          <a href="/" class="text-parchment hover:text-creek-light transition-colors">Meet John</a>
+          <a href="/prayerwalk" class="text-parchment hover:text-creek-light transition-colors">Prayer Walk</a>
+          <a href="/books" class="text-parchment hover:text-creek-light transition-colors">Books</a>
+          <a href="/geocaching" class="text-parchment hover:text-creek-light transition-colors">Geocaching</a>
+          <a href="/find-us" class="text-parchment hover:text-creek-light transition-colors">Find Us</a>
+          <a href="/donate" class="bg-copper text-parchment px-4 py-2 rounded-sm hover:bg-copper-light transition-colors text-sm font-semibold">Donate</a>
+        </nav>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="menu-toggle"
+          class="md:hidden text-parchment p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <i id="icon-open" class="ti ti-menu-2 text-2xl"></i>
+          <i id="icon-close" class="ti ti-x text-2xl hidden"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <nav
+      id="mobile-menu"
+      class="hidden md:hidden bg-forest-light border-t border-forest"
+      aria-label="Mobile navigation"
+    >
+      <div class="section-container py-4 flex flex-col gap-1 font-ui">
+        <a href="/" class="text-parchment hover:text-creek-light py-3 px-2 transition-colors border-b border-forest">Meet John Hendrix</a>
+        <a href="/prayerwalk" class="text-parchment hover:text-creek-light py-3 px-2 transition-colors border-b border-forest">Prayer Walk</a>
+        <a href="/books" class="text-parchment hover:text-creek-light py-3 px-2 transition-colors border-b border-forest">Books</a>
+        <a href="/geocaching" class="text-parchment hover:text-creek-light py-3 px-2 transition-colors border-b border-forest">Geocaching</a>
+        <a href="/find-us" class="text-parchment hover:text-creek-light py-3 px-2 transition-colors border-b border-forest">Find Us</a>
+        <a href="/donate" class="btn-donate mt-3 text-center">Donate to the Vision</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page content -->
+  <main class="flex-1 pb-20 md:pb-0">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-stone-light py-10">
+    <div class="section-container">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm font-ui">
+        <div>
+          <p class="font-display text-parchment text-base mb-1">John Hendrix Memorial Prayer Walk</p>
+          <p>A 501(c)(3) nonprofit organization in Oak Ridge, Tennessee.</p>
+          <p>All donations are tax deductible.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a href="tel:8657128027" class="text-stone-light hover:text-parchment transition-colors flex items-center gap-2">
+            <i class="ti ti-phone text-base" aria-hidden="true"></i> (865) 712-8027
+          </a>
+          <a href="/donate" class="text-copper-light hover:text-parchment transition-colors flex items-center gap-2">
+            <i class="ti ti-heart text-base" aria-hidden="true"></i> Donate to the Vision
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-ink-soft text-xs text-stone">
+        <p>Copyright 2012–{new Date().getFullYear()} John Hendrix Memorial Prayer Walk. All rights reserved.</p>
+        <p>For permission to use content from this website call (865) 712-8027.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky mobile action bar -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-ink border-t border-ink-soft">
+    <div class="grid grid-cols-3 divide-x divide-ink-soft">
+      <a href="tel:8657128027"
+         class="flex flex-col items-center justify-center py-3 text-parchment hover:bg-ink-soft transition-colors min-h-[56px] gap-1"
+         aria-label="Call us">
+        <i class="ti ti-phone text-xl" aria-hidden="true"></i>
+        <span class="text-[10px] font-ui font-medium tracking-wide uppercase">Call</span>
+      </a>
+      <a href="/find-us"
+         class="flex flex-col items-center justify-center py-3 text-parchment hover:bg-ink-soft transition-colors min-h-[56px] gap-1"
+         aria-label="Find the trail">
+        <i class="ti ti-map-pin text-xl" aria-hidden="true"></i>
+        <span class="text-[10px] font-ui font-medium tracking-wide uppercase">Find Us</span>
+      </a>
+      <a href="/donate"
+         class="flex flex-col items-center justify-center py-3 bg-copper text-parchment hover:bg-copper-light transition-colors min-h-[56px] gap-1"
+         aria-label="Donate">
+        <i class="ti ti-heart text-xl" aria-hidden="true"></i>
+        <span class="text-[10px] font-ui font-medium tracking-wide uppercase">Donate</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hamburger toggle script -->
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    toggle?.addEventListener('click', () => {
+      const isOpen = !menu?.classList.contains('hidden');
+      menu?.classList.toggle('hidden', isOpen);
+      iconOpen?.classList.toggle('hidden', !isOpen);
+      iconClose?.classList.toggle('hidden', isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  </script>
+
+</body>
+</html>
