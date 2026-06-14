@@ -1,16 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// PLACEHOLDER — update with real cache details
-const cache = {
-  name: "John Hendrix Memorial Cache",
-  coordinates: "N 36° 00.745  W 084° 14.032",
-  geoLink: "geo:36.01241,-84.233869",
-  geocachingUrl: "#", // PLACEHOLDER — replace with real Geocaching.com cache URL
-  difficulty: "1.5",
-  terrain: "1.5",
-  type: "Traditional Cache",
-};
+const caches = [
+  {
+    id: "GC5JYGG",
+    name: "John Hendrix Memorial Prayer Walk 1-4",
+    markers: "Trail Markers 1–4",
+    coordinates: "N 36° 00.745  W 084° 14.032",
+    geoLink: "geo:36.01241,-84.233869",
+    url: "https://www.geocaching.com/geocache/GC5JYGG_john-hendrix-memorial-prayer-walk-1-4?guid=a3601103-4272-4654-b379-bebaa6eb847a",
+    difficulty: "1.5",
+    terrain: "1.5",
+    type: "Traditional Cache",
+  },
+  {
+    id: "GC5JYFR",
+    name: "John Hendrix Memorial Prayer Walk 5-8",
+    markers: "Trail Markers 5–8",
+    coordinates: "N 36° 00.745  W 084° 14.032",
+    geoLink: "geo:36.01241,-84.233869",
+    url: "https://www.geocaching.com/geocache/GC5JYFR_john-hendrix-memorial-prayer-walk-5-8?guid=22640e59-f867-4544-b409-eacebe75a7a0",
+    difficulty: "1.5",
+    terrain: "1.5",
+    type: "Traditional Cache",
+  },
+];
 
 const testimonials = [
   {
@@ -28,17 +42,17 @@ const testimonials = [
 
 <Layout
   title="Geocaching"
-  description="Find the John Hendrix Memorial geocache on the Prayer Walk trail in Oak Ridge, Tennessee. Coordinates and cache details for geocachers."
+  description="Find two geocaches on the John Hendrix Memorial Prayer Walk trail in Oak Ridge, Tennessee — one for markers 1-4 and one for markers 5-8."
 >
 
   <!-- Hero -->
   <section class="bg-forest-textured text-parchment py-20 hero-border">
-    <div class="section-container">
+    <div class="section-container pl-8 sm:pl-12">
       <span class="eyebrow-light">The World's Largest Treasure Hunt</span>
       <h1 class="font-display text-section text-parchment mb-4">Geocaching at the<br />Prayer Walk</h1>
       <p class="text-parchment-dark text-lg max-w-xl">
-        The John Hendrix Memorial Prayer Walk is part of the global geocaching network.
-        Come hunt for the cache — and discover a piece of living history along the way.
+        The John Hendrix Memorial Prayer Walk has two geocaches hidden along the trail —
+        one for each half of the journey. Come hunt for treasure and discover a piece of living history.
       </p>
     </div>
   </section>
@@ -61,53 +75,64 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- Cache details -->
+  <!-- Two cache cards -->
   <section class="section-pad bg-parchment-dark">
     <div class="section-container">
-      <span class="eyebrow">Cache Details</span>
-      <h2 class="font-display text-section text-forest mb-8">Find the Cache</h2>
+      <span class="eyebrow">Two Caches to Find</span>
+      <h2 class="font-display text-section text-forest mb-8">Find the Caches</h2>
 
-      <div class="bg-parchment border border-stone-light rounded-sm p-8 max-w-xl mb-8">
-        <dl class="space-y-4 font-ui">
-          <div class="flex justify-between items-center border-b border-stone-light pb-4">
-            <dt class="text-stone text-sm uppercase tracking-wide">Cache Name</dt>
-            <dd class="font-semibold text-forest">{cache.name}</dd>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        {caches.map((cache) => (
+          <div class="bg-parchment border border-stone-light rounded-sm overflow-hidden">
+            <!-- Card header -->
+            <div class="bg-forest px-6 py-4">
+              <p class="font-ui text-xs text-creek-light tracking-widest uppercase mb-1">{cache.markers}</p>
+              <h3 class="font-display text-lg text-parchment">{cache.name}</h3>
+            </div>
+            <!-- Card body -->
+            <div class="p-6">
+              <dl class="space-y-3 font-ui text-sm mb-6">
+                <div class="flex justify-between items-center border-b border-stone-light pb-3">
+                  <dt class="text-stone uppercase tracking-wide">Cache ID</dt>
+                  <dd class="font-semibold text-copper font-mono">{cache.id}</dd>
+                </div>
+                <div class="flex justify-between items-center border-b border-stone-light pb-3">
+                  <dt class="text-stone uppercase tracking-wide">Type</dt>
+                  <dd class="font-semibold text-ink">{cache.type}</dd>
+                </div>
+                <div class="flex justify-between items-center border-b border-stone-light pb-3">
+                  <dt class="text-stone uppercase tracking-wide">Difficulty</dt>
+                  <dd class="font-semibold text-ink">{cache.difficulty} / 5</dd>
+                </div>
+                <div class="flex justify-between items-center border-b border-stone-light pb-3">
+                  <dt class="text-stone uppercase tracking-wide">Terrain</dt>
+                  <dd class="font-semibold text-ink">{cache.terrain} / 5</dd>
+                </div>
+                <div class="flex justify-between items-center">
+                  <dt class="text-stone uppercase tracking-wide">Coordinates</dt>
+                  <dd class="font-semibold text-ink font-mono text-xs">{cache.coordinates}</dd>
+                </div>
+              </dl>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={cache.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary text-sm text-center"
+                >
+                  View on Geocaching.com →
+                </a>
+                <a href={cache.geoLink} class="btn-secondary text-sm text-center">
+                  Open in Maps
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="flex justify-between items-center border-b border-stone-light pb-4">
-            <dt class="text-stone text-sm uppercase tracking-wide">Type</dt>
-            <dd class="font-semibold text-ink">{cache.type}</dd>
-          </div>
-          <div class="flex justify-between items-center border-b border-stone-light pb-4">
-            <dt class="text-stone text-sm uppercase tracking-wide">Difficulty</dt>
-            <dd class="font-semibold text-ink">{cache.difficulty} / 5</dd>
-          </div>
-          <div class="flex justify-between items-center border-b border-stone-light pb-4">
-            <dt class="text-stone text-sm uppercase tracking-wide">Terrain</dt>
-            <dd class="font-semibold text-ink">{cache.terrain} / 5</dd>
-          </div>
-          <div class="flex justify-between items-center">
-            <dt class="text-stone text-sm uppercase tracking-wide">Coordinates</dt>
-            <dd class="font-semibold text-ink font-mono text-sm">{cache.coordinates}</dd>
-          </div>
-        </dl>
+        ))}
       </div>
 
-      <div class="flex flex-wrap gap-4">
-        <a
-          href={cache.geocachingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary"
-        >
-          View on Geocaching.com →
-        </a>
-        <a href={cache.geoLink} class="btn-secondary">
-          Open in Maps App
-        </a>
-      </div>
-
-      <p class="text-sm text-stone font-ui mt-4">
-        * A free account at Geocaching.com is required to log your find.
+      <p class="text-sm text-stone font-ui">
+        * A free account at Geocaching.com is required to log your finds.
       </p>
     </div>
   </section>
