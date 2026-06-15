@@ -167,23 +167,12 @@ const tiers = [
   let selectedAmount: number | null = null;
   let isCustom = false;
 
-  // Selected tier styles
-  const activeClasses = ['border-forest', 'bg-forest', 'text-parchment'];
-
   function selectTier(btn: Element) {
     // Reset all buttons
-    tierBtns.forEach(b => {
-      b.classList.remove('border-forest', 'bg-forest');
-      b.querySelectorAll('.text-forest, .text-ink, .text-stone').forEach(el => {
-        (el as HTMLElement).style.color = '';
-      });
-    });
+    tierBtns.forEach(b => b.classList.remove('tier-active'));
 
     // Highlight selected
-    btn.classList.add('border-forest', 'bg-forest');
-    btn.querySelectorAll('span, p').forEach(el => {
-      (el as HTMLElement).style.color = '#F7F3EC';
-    });
+    btn.classList.add('tier-active');
 
     const amount = (btn as HTMLElement).dataset.amount;
     isCustom = amount === "";

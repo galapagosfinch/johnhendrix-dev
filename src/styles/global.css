@@ -93,3 +93,12 @@
     @apply font-ui text-sm text-stone not-italic mt-2 block;
   }
 }
+
+  /* Donation tier active state */
+  .tier-active {
+    @apply border-forest bg-forest;
+  }
+  .tier-active span,
+  .tier-active p {
+    @apply text-parchment;
+  }
