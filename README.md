@@ -51,33 +51,30 @@ public/
 #### Trail markers
 Edit `src/data/trail-markers.json` — no code changes needed. **8 marker descriptions still need to be written.**
 
-#### Stripe donation link
-In `src/pages/donate.astro`, replace the `stripeUrl` placeholder with your Stripe Payment Link URL. **Stripe account not yet created.**
-
-#### Geocacher testimonials
-In `src/pages/geocaching.astro`, replace the placeholder testimonials with real quotes from geocachers.
-
 #### Custom domain
 Point `johnhendrixmemorial.com` to Cloudflare Pages (update DNS at iPage).
 
 #### Visual review
 Do a full review on mobile and desktop before launch.
 
-#### Apple Pay setup
+#### Stripe/Apple Pay setup
 1. Create a Stripe account and register your domain for Apple Pay
-2. Download the domain verification file from Stripe
-3. Replace the contents of `public/.well-known/apple-developer-merchantid-domain-association`
+2. In `src/pages/donate.astro`, replace the `stripeUrl` placeholder with your Stripe Payment Link URL. **Stripe account not yet created.**
+3. Download the domain verification file from Stripe
+4. Replace the contents of `public/.well-known/apple-developer-merchantid-domain-association`
 
 ---
 
 ### 🗺️ Phase 2
 - Re-activate geocaches (currently archived: GC5JYGG, GC5JYFR)
-- Geocaching API integration via Cloudflare Workers
+- In `src/pages/geocaching.astro`, uncomment testimonials section and replace the placeholders with real quotes from geocachers.
 
 ---
 
 ### 📊 Phase 3
+- Geocaching API integration via Cloudflare Workers
 - Donation progress meter (Cloudflare D1)
+
 ## Deploying to Cloudflare Pages
 
 1. Push this repository to GitHub
